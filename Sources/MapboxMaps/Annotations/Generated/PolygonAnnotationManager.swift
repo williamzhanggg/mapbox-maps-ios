@@ -325,6 +325,7 @@ public class PolygonAnnotationManager: AnnotationManagerInternal {
 
             updateDragSource()
             updateDragLayer()
+            delegate?.annotationManager(self, annotationDragBegin: annotation)
         } catch {
             Log.error(forMessage: "Failed to create the drag source to style. Error: \(error)")
         }
@@ -338,10 +339,15 @@ public class PolygonAnnotationManager: AnnotationManagerInternal {
 
         self.annotationBeingDragged?.polygon = offsetPoint
         updateDragSource()
+        delegate?.annotationManager(self, annotationDragChanged: annotationBeingDragged)
     }
 
     internal func handleDragEnded() {
+        let annotationBeingDraggedCopy = annotationBeingDragged
         annotationBeingDragged = nil
+        if let annotationBeingDraggedCopy = annotationBeingDraggedCopy{
+            delegate?.annotationManager(self, annotationDragEnded: annotationBeingDraggedCopy)
+        }
     }
 }
 

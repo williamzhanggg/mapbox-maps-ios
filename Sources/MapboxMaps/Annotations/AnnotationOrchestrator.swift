@@ -48,6 +48,24 @@ public protocol AnnotationInteractionDelegate: AnyObject {
     ///   - annotations: A list of `Annotations` that were tapped
     func annotationManager(_ manager: AnnotationManager,
                            didDetectTappedAnnotations annotations: [Annotation])
+    
+    /// This method is invoked when an annotation begin drag
+    /// - Parameters:
+    ///   - manager: The `AnnotationManager` that detected this drag
+    ///   - annotation: The `Annotation` that being draged
+    func annotationManager(_ manager: AnnotationManager, annotationDragBegin annotation: Annotation)
+    
+    /// This method is invoked when an annotation drag changed
+    /// - Parameters:
+    ///   - manager: The `AnnotationManager` that detected this drag
+    ///   - annotation: The `Annotation` that being draged
+    func annotationManager(_ manager: AnnotationManager, annotationDragChanged annotation: Annotation)
+    
+    /// This method is invoked when an annotation drag end
+    /// - Parameters:
+    ///   - manager: The `AnnotationManager` that detected this drag
+    ///   - annotation: The `Annotation` that being draged
+    func annotationManager(_ manager: AnnotationManager, annotationDragEnded annotation: Annotation)
 
 }
 
